@@ -7,12 +7,12 @@ public:
     int minDeletion(string s, int k) {
         int i,j,len=0,del=0,ind=0,repi=1;
         int rep[16];
-        for(i=0;s[i];i++){
+        for(i=0;s[i];i++){ //calculating the length of string
             len++;
             
         }
 
-        for(i=0;i<len-1;i++){
+        for(i=0;i<len-1;i++){  //arranging the string in a way the repeated characters occur consecutively (aka alphabetical order)
             for(j=i+1;j<len;j++){
                 if(s[i]>s[j]){
                     char temp=s[i];
@@ -23,7 +23,7 @@ public:
             }
         }
         
-        for(i=0,j=1;i<len-1;i++,j++){
+        for(i=0,j=1;i<len-1;i++,j++){//storing the frequency of each distinct characters
         
            
             if(s[i]!=s[j]){
@@ -38,14 +38,14 @@ public:
              repi++;
           
         }
-        rep[ind]=repi;
+        rep[ind]=repi;//making sure the last frequency is not neglected
         ind++;
         
     
         
   
     
-    for(i=0;i<ind-1;i++){
+    for(i=0;i<ind-1;i++){  //arranging the frequency list in descending order, to keep the deletion minimum and avoid unnecessary deletions.
         for(j=i+1;j<ind;j++){
             if(rep[j]>rep[i]){
                 int temp=rep[j];
@@ -56,7 +56,7 @@ public:
         }
     }
         
-        for(i=k;i<ind;i++){
+        for(i=k;i<ind;i++){ //calculating the deletions required
             del+=rep[i];
         }
 
